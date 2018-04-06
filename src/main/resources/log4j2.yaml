@@ -1,0 +1,35 @@
+Configuration:
+  status: warn
+
+  properties:
+    property:
+      - name: PID
+        value: '????'
+      - name: LOG_EXCEPTION_CONVERSION_WORD
+        value: '%rEx'
+      - name: LOG_LEVEL_PATTERN
+        value: '%5p'
+      - name: LOG_DATEFORMAT_PATTERN
+        value: yyyy-MM-dd HH:mm:ss.SSS
+      - name: CONSOLE_LOG_PATTERN
+        value: '%highlight{%d{${LOG_DATEFORMAT_PATTERN}}}{STYLE=Logback}
+        %highlight{${LOG_LEVEL_PATTERN}}{STYLE=Logback}
+        %highlight{ - }{STYLE=Logback}
+        %highlight{[%20.20t]}{STYLE=Logback}
+        %highlight{%-20.20c{1.}}{STYLE=Logback}
+        %highlight{:}{STYLE=Logback}
+        ${LOG_EXCEPTION_CONVERSION_WORD} %m%n'
+
+  Appenders:
+    Console:
+      name: default
+      follow: true
+      target: SYSTEM_OUT
+      PatternLayout:
+        pattern: '${CONSOLE_LOG_PATTERN}'
+
+  Loggers:
+    Root:
+      level: debug
+      AppenderRef:
+        - ref: default
